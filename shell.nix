@@ -1,7 +1,7 @@
 { nixpkgs ? import <nixpkgs> {} }:
 let
-  # pkgs_source = fetchTarball https://github.com/NixOS/nixpkgs/archive/19.09.tar.gz;
-  pkgs_source = fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
+  pkgs_source = fetchTarball https://github.com/NixOS/nixpkgs/archive/19.09.tar.gz;
+  # pkgs_source = fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
    overlays = [
       (self: super:                   # define our local packages (useful to fix versions)
          {
@@ -22,7 +22,7 @@ let
 
    pyEnv = py.buildEnv.override {
      extraLibs = with py.pkgs;
-       [pytorchWithoutCuda
+       [pytorch
          # nltk
         # notebook
         # myWerkzeug
@@ -40,7 +40,8 @@ in
     name = "sh-env";
     buildInputs = [pyEnv];
     shellHook = ''
-      export LANG=en_US.UTF-8
+      export LC_ALL=C.UTF-8
+      export LANG=C.UTF-8
       export PYTHONIOENCODING=UTF-8
      '';
   }

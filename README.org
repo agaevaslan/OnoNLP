@@ -1,0 +1,6 @@
+* How to run
+1. Install nix: https://nixos.org/nix/download.html
+2. Run
+   #+BEGIN_SRC sh
+   nix-shell --run "flask run --host=0.0.0.0 --port 8090"
+   #+END_SRC
