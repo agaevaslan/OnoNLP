@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Parse</title>
+    <meta name="viewport" content="width=device-width">
+    <!-- <meta name="description" content="description here"> -->
+    <link rel="root" href=""/> <!-- for JS -->
+    <link rel="canonical" href="https://github.com/spyysalo/annodoc//sandbox.html">
+
+    <!-- Base jQuery-UI styles -->
+    <link rel="stylesheet" href="static/css/jquery-ui-redmond.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/main.css">
+    <!-- CSS for embedded visualizations -->
+    <link rel="stylesheet" href="static/css/style-vis.css">
+
+    <!-- head.js, required for embedding -->
+    <script type="text/javascript" src="static/js/ext/head.load.min.js"></script>
+    <link rel="stylesheet" href="static/fonts/PT_Sans-Caption-Web-Regular.ttf">
+    <link rel="stylesheet" href="static/fonts/Liberation_Sans-Regular.ttf">    
+  </head>
+  <body>
+    
+    <article class="entry-content">
+      <form action="/" method="get">
+	<label for="sentence">Предложение: </label>
+	<input type="text" name="sentence" value="{{sentence}}" size="200"/>
+      </form>
+	Дерево зависимостей для <strong>{{sentence}}</strong>:
+	
+<div class="conllu-parse" tabs="yes">
+# {{sentence}}
+{{parse}}
+</div>
+      </article>
+    </body>
+    
+
+    <!-- support for embedded visualizations -->
+    <script type="text/javascript">
+      var root = ''; // filled in by jekyll
+      head.js(
+        // External libraries
+        root + 'static/js/ext/jquery.min.js',
+        root + 'static/js/ext/jquery.svg.min.js',
+        root + 'static/js/ext/jquery.svgdom.min.js',
+        root + 'static/js/ext/jquery-ui.min.js',
+        root + 'static/js/ext/waypoints.min.js',
+        // brat helper modules
+        root + 'static/js/brat/configuration.js',
+        root + 'static/js/brat/util.js',
+        root + 'static/js/brat/annotation_log.js',
+        root + 'static/js/ext/webfont.js',
+        // brat main modules
+        root + 'static/js/brat/dispatcher.js',
+        root + 'static/js/brat/url_monitor.js',
+        root + 'static/js/brat/visualizer.js',
+          // external parsing libraries
+	  'https://spyysalo.github.io/conllu.js/conllu.js',
+        // annotation documentation support
+        root + 'static/js/local/annodoc.js',
+        // project-specific collection data
+        root + 'static/js/local/collections.js',
+        // project-specific configuration
+        root + 'static/js/local/config.js'
+    );
+
+    var webFontURLs = [
+        root + 'static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+        root + 'static/fonts/Liberation_Sans-Regular.ttf'
+    ];
+
+    head.ready(function() {
+        // mark current collection (filled in by Jekyll)
+        Collections.listing['_current'] = '';
+
+	// performs all embedding and support functions
+	Annodoc.activate(Config.bratCollData, Collections.listing);
+    });
+</script>
+
+</html>
