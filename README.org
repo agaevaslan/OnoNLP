@@ -4,3 +4,9 @@
    #+BEGIN_SRC sh
    nix-shell --run "flask run --host=0.0.0.0 --port 8090"
    #+END_SRC
+* To-do
+1. [ ] text area for input, intended to insert full article text
+2. [ ] split article into sentences, show parse tree for each of them
+3. [ ] start writing simple rules to extract key phrases, e.g. 
+   1. Proper names
+   2. Noun dependencies (only for singular)
