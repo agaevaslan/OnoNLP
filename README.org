@@ -16,3 +16,4 @@
 
 * Some relevant info
 - [[https://universaldependencies.org/treebanks/ru_syntagrus/index.html][Russian SynTagRus]] (PoS-tags, features, relations)
+- more details about relations: https://universaldependencies.org/docs/en/dep/
