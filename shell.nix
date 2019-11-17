@@ -5,7 +5,7 @@ let
    overlays = [
       (self: super:                   # define our local packages (useful to fix versions)
          {
-          python3 = super.python36.override {
+          python3 = super.python37.override {
            packageOverrides = python-self: python-super: {
              stanfordnlp = python-self.callPackage ./stanfordnlp-0.2.0.nix { };
            };};})
@@ -22,7 +22,7 @@ let
 
    pyEnv = py.buildEnv.override {
      extraLibs = with py.pkgs;
-       [pytorch
+       [pytorchWithoutCuda
          # nltk
         # notebook
         # myWerkzeug
