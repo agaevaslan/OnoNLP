@@ -10,3 +10,9 @@
 3. [ ] start writing simple rules to extract key phrases, e.g. 
    1. Proper names
    2. Noun dependencies (only for singular)
+4. [ ] all key phrases should be normalised
+5. [ ] count overlaps between key phrases in the article
+
+
+* Some relevant info
+- [[https://universaldependencies.org/treebanks/ru_syntagrus/index.html][Russian SynTagRus]] (PoS-tags, features, relations)
