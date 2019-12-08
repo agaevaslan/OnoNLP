@@ -28,6 +28,7 @@ let
         # myWerkzeug
         flask
         stanfordnlp
+        anytree
          # graphviz
          # If you want to have a local virtualenv, see here: https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/python.section.md
          # scikitlearn
