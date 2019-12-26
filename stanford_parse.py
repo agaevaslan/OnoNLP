@@ -52,16 +52,39 @@ def sentence_as_tree(sentence):
     root = [t for t in tokens if not t.parent_node][0]
     return root, tokens
 
+def tsort(items):
+    return sorted(items, key=lambda x: x.name)
 
-def print_ascii_tree(sentence):
-    def tsort(items):
-        return sorted(items, key=lambda x: x.name)
-    root, _ = sentence_as_tree(sentence)
+def print_ascii_tree(root):
+    # root, _ = sentence_as_tree(sentence)
     for pre, _, node in RenderTree(root, childiter=tsort):
         treestr = f"{pre}{node.name}"
         print(treestr.ljust(8), node.lemma, node.upos,
               node.feats, node.dependency_relation)
 
+
+def extract_keyphrases(sentence):
+    candidates = []
+    root, _ = sentence_as_tree(sentence)
+    for pre, _, node in RenderTree(root, childiter=tsort):
+        if node.upos == 'NOUN':
+            candidate = []
+            candidate.append(node.lemma)
+            # print(node.lemma)
+            for anc in sorted(node.descendants, key = lambda x: x.name):
+                if anc.name > node.name:
+                    candidate.append(anc.text)
+                    # print(anc.name, anc.text, anc.dependency_relation)
+            # print()
+            candidates.append(candidate)
+    kp = [" ".join(c).lower() for c in candidates if len(c) > 1]
+    return kp
+
+
+def extract_normalized_keyphrases(sentence):
+    kp = extract_keyphrases(sentence)
+    return kp
+    
 
 # Local Variables:
 # python-shell-interpreter: "nix-shell"
